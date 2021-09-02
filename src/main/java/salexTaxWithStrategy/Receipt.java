@@ -1,6 +1,8 @@
 package salexTaxWithStrategy;
 
+import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 /**
  * to represent the receipt
@@ -9,17 +11,36 @@ import java.util.Date;
  */
 public class Receipt {
 
-    private ShoppingBasket shoppingBasket;
+    private final ShoppingBasket shoppingBasket;
     private float totalPrice;
     private float applicableTax;
-    private Date receiptDate;
+    private StringBuilder result;
+
+    private final static String NEW_LINE = "\n";
+
 
     public Receipt (ShoppingBasket shoppingBasket){
         this.shoppingBasket = shoppingBasket;
     }
+
+    public void prepareReceipt () {
+        result = new StringBuilder();
+        List<Product> products = shoppingBasket.getProducts();
+
+        final Date now = Date.from(Instant.now());
+        result.append("Date: ").append(now).append(NEW_LINE);
+        result.append("thanks for your order, details: ").append(NEW_LINE);
+
+        for (Product product : products){
+            totalPrice = totalPrice + product.getPrice();
+            applicableTax = applicableTax + product.getTax();
+            result.append(product.getName()).append(" # price: ")
+                    .append(product.getPrice()).append(NEW_LINE);
+        }
+    }
+
     @Override
     public String toString (){
-        //todo the receipt as a simple String
-        return null;
+        return result.toString();
     }
 }
