@@ -49,9 +49,14 @@ public abstract class Product implements Taxable {
         this.setPrice(this.getTax() + this.getPrice());
     }
 
+    /**
+     *
+     * @param tax to be rounded
+     * @return tax rounded up to the nearest 0.05
+     */
     public float roundTax (float tax) {
         //todo round the tax
-        return (float) ((float) Math.round(tax * 20.0) / 20.0);
+        return (float) ((float) Math.ceil(tax * 20.0) / 20.0);
     }
 
     private void determineStrategy () {

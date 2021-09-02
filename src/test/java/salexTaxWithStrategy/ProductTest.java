@@ -38,7 +38,7 @@ class ProductTest {
                         new Food("chocolate bar" , 0.85f, false), 0.85f
                 ),
                 Arguments.of(
-                        new Book("lord of the rings", 12.49f , false), 12.94f
+                        new Book("lord of the rings", 12.49f , false), 12.49f
                 ),
                 Arguments.of(
                         new MusicCd("cd", 14.99f, false),16.49f
