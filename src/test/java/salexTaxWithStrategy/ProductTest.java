@@ -22,8 +22,6 @@ class ProductTest {
     @ParameterizedTest
     @MethodSource("provideGoods")
     public void taxCalcTest (Product product , float expectedTaxedPrice){
-        //todo i dont know yet if this enough, but it tests the tax calculation
-        // the test failed now, functions are not implement yet
         basket.addToBasket(product);
         assertEquals(expectedTaxedPrice , product.getPrice());
     }
