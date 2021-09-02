@@ -1,2 +1,0 @@
-# SalesTax
-Coding Assessment 
