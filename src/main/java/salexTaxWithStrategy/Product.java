@@ -1,6 +1,8 @@
 package salexTaxWithStrategy;
 
-import salexTaxWithStrategy.strategy.TaxStrategy;
+import salexTaxWithStrategy.products.*;
+import salexTaxWithStrategy.products.Medicament;
+import salexTaxWithStrategy.strategy.*;
 
 /**
  * abstract Product class to represent all products
@@ -10,7 +12,7 @@ import salexTaxWithStrategy.strategy.TaxStrategy;
  */
 public abstract class Product implements Taxable {
     private final String name;
-    private final float price;
+    private float price;
     private final boolean isImported;
     private float tax;
     private TaxStrategy taxStrategy;
@@ -31,7 +33,7 @@ public abstract class Product implements Taxable {
 
 
     /**
-     * for the product with strategy
+     * for the product with strategy determined by the System
      */
     public Product(String name, float price, boolean isImported) {
         this (name, price , isImported, null);
@@ -40,6 +42,33 @@ public abstract class Product implements Taxable {
     @Override
     public void tax (){
         //todo execute the tax strategy to tax a product
+        if (taxStrategy == null){
+            determineStrategy();
+        }
+        this.setTax(this.roundTax(this.getTaxStrategy().taxProduct(this)));
+        this.setPrice(this.getTax() + this.getPrice());
+    }
+
+    public float roundTax (float tax) {
+        //todo round the tax
+        return (float) ((float) Math.round(tax * 20.0) / 20.0);
+    }
+
+    private void determineStrategy () {
+        if (this instanceof Food || this instanceof Medicament || this instanceof Book){
+            if (!this.isImported()){
+                this.setTaxStrategy(new NotTaxedStrategy());
+            }
+            else {
+                this.setTaxStrategy(new ImportedStrategy());
+            }
+        }
+        else {
+            if (this.isImported()){
+                this.setTaxStrategy(new FullyTaxedAndImportedStrategy());
+            }
+            else this.setTaxStrategy(new FullyTaxedStrategy());
+        }
     }
 
     public String getName() {
@@ -68,5 +97,9 @@ public abstract class Product implements Taxable {
 
     public void setTaxStrategy(TaxStrategy taxStrategy) {
         this.taxStrategy = taxStrategy;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

@@ -37,6 +37,10 @@ public class Receipt {
             result.append(product.getName()).append(" # price: ")
                     .append(product.getPrice()).append(NEW_LINE);
         }
+        result.append("-----------------------------------------------")
+                .append(NEW_LINE)
+                .append("tax: ").append(applicableTax).append(NEW_LINE)
+                .append("total: ").append(totalPrice);
     }
 
     @Override
