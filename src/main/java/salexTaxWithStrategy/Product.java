@@ -15,4 +15,24 @@ public abstract class Product  {
         this.price = price;
         this.isImported = isImported;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public boolean isImported() {
+        return isImported;
+    }
+
+    public float getTax() {
+        return tax;
+    }
+
+    public TaxStrategy getTaxStrategy() {
+        return taxStrategy;
+    }
 }
