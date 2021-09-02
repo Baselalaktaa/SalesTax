@@ -4,27 +4,28 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import static org.junit.jupiter.api.Assertions.*;
 import salexTaxWithStrategy.products.*;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ProductTest {
 
-    private static Shoopingbasket basket;
+    private static ShoppingBasket basket;
     private static Receipt receipt;
     @BeforeAll
     static void setUp(){
-        basket = new Shoopingbasket();
+        basket = new ShoppingBasket();
         receipt= new Receipt(basket);
     }
 
     @ParameterizedTest
     @MethodSource("provideGoods")
     public void taxCalcTest (Product product , float expectedTaxedPrice){
-        // add to basket
-        // test
+        //todo i dont know yet if this enough, but it tests the tax calculation
+        // the test failed now, functions are not implement yet
+        basket.addToBasket(product);
+        assertEquals(expectedTaxedPrice , product.getPrice());
     }
 
     /**
