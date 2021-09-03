@@ -24,19 +24,18 @@ class TaxProductTest {
     @ParameterizedTest
     @MethodSource("provideGoodsWithoutQty")
     public void taxProductWithoutQty(Product product , float expectedTaxedPrice){
-        basket.addToBasket(product);
-        assertEquals(expectedTaxedPrice , product.getPrice());
-        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasket(null));
+        basket.addToBasket(product , 1);
+        assertEquals(expectedTaxedPrice , product.getPriceAfterTax());
     }
 
     @ParameterizedTest
     @MethodSource("provideGoodsWithQty")
     public void taxProductWithQty(Product product , float expectedTaxedPrice){
-        basketWithQty.addToBasketWithQty(product , 2);
-        assertEquals(expectedTaxedPrice , product.getPrice());
-        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasketWithQty(null , 0));
-        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasketWithQty(new Perfume("", 0.0f, true) , -1));
-        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasketWithQty(null , 1));
+        basketWithQty.addToBasket(product , 2);
+        assertEquals(expectedTaxedPrice , product.getPriceAfterTax());
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasket(null , 0));
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasket(new Perfume("", 0.0f, true) , -1));
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasket(null , 1));
     }
 
     /**

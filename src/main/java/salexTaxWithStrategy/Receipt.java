@@ -2,7 +2,7 @@ package salexTaxWithStrategy;
 
 import java.time.Instant;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 /**
  * to represent the receipt
@@ -15,7 +15,7 @@ public class Receipt {
     private final ShoppingBasket shoppingBasket;
     private float totalPrice;
     private float applicableTax;
-    private StringBuilder result;
+    private StringBuilder receipt;
 
 
     private Receipt(ShoppingBasket shoppingBasket){
@@ -27,20 +27,25 @@ public class Receipt {
     }
 
     public void prepareReceipt () {
-        result = new StringBuilder();
-        List<Product> products = shoppingBasket.getProducts();
+        receipt = new StringBuilder();
+        Map<Product , Integer> productsWithQty = shoppingBasket.getProductsWithQty();
+
 
         final Date now = Date.from(Instant.now());
-        result.append("Date: ").append(now).append(NEW_LINE);
-        result.append("thanks for your order, details: ").append(NEW_LINE);
+        receipt.append("Date: ").append(now).append(NEW_LINE);
+        receipt.append("thanks for your order, details: ").append(NEW_LINE);
 
-        for (Product product : products){
-            totalPrice = totalPrice + product.getPrice();
-            applicableTax = applicableTax + product.getTax();
-            result.append(product.getName()).append(" # price: ")
-                    .append(product.getPrice()).append(NEW_LINE);
+
+        for (Map.Entry<Product ,Integer> entry : productsWithQty.entrySet()){
+            totalPrice = totalPrice + entry.getKey().getPriceAfterTax();
+            applicableTax = applicableTax + entry.getKey().getTax() * entry.getValue();
+            receipt.append(entry.getKey().getName())
+                    .append(" #Qty: ").append(entry.getValue())
+                    .append(" #net price: ").append(entry.getKey().getPriceBeforeTax())
+                    .append(" #taxed price: ").append(entry.getKey().getPriceAfterTax())
+                    .append(NEW_LINE);
         }
-        result.append("-----------------------------------------------")
+        receipt.append("-----------------------------------------------")
                 .append(NEW_LINE)
                 .append("tax: ").append(applicableTax).append(NEW_LINE)
                 .append("total: ").append(totalPrice);
@@ -48,6 +53,18 @@ public class Receipt {
 
     @Override
     public String toString (){
-        return result.toString();
+        return receipt.toString();
+    }
+
+    public ShoppingBasket getShoppingBasket() {
+        return shoppingBasket;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public float getApplicableTax() {
+        return applicableTax;
     }
 }

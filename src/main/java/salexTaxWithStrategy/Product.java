@@ -12,7 +12,8 @@ import salexTaxWithStrategy.strategy.*;
  */
 public abstract class Product implements Taxable {
     private final String name;
-    private float price;
+    private float priceBeforeTax;
+    private float priceAfterTax;
     private final boolean isImported;
     private float tax;
     private TaxStrategy taxStrategy;
@@ -20,13 +21,13 @@ public abstract class Product implements Taxable {
     /**
      * added for the products with specific strategy
      * @param name of the product
-     * @param price of the product
+     * @param priceBeforeTax of the product
      * @param isImported determine if the product is imported to calculate taxes
      * @param taxStrategy for the tax
      */
-    public Product (String name , float price , boolean isImported, TaxStrategy taxStrategy){
+    public Product (String name , float priceBeforeTax, boolean isImported, TaxStrategy taxStrategy){
         this.name = name;
-        this.price = price;
+        this.priceBeforeTax = priceBeforeTax;
         this.isImported = isImported;
         this.taxStrategy = taxStrategy;
     }
@@ -35,8 +36,8 @@ public abstract class Product implements Taxable {
     /**
      * for the product with strategy determined by the System
      */
-    public Product(String name, float price, boolean isImported) {
-        this (name, price , isImported, null);
+    public Product(String name, float priceBeforeTax, boolean isImported) {
+        this (name, priceBeforeTax, isImported, null);
     }
 
     @Override
@@ -45,7 +46,7 @@ public abstract class Product implements Taxable {
             determineStrategy();
         }
         this.setTax(this.roundTax(this.getTaxStrategy().determineTaxStrategy(this)));
-        this.setPrice(this.getTax() + this.getPrice());
+        this.setPriceAfterTax(this.getTax() + this.getPriceBeforeTax());
     }
 
     /**
@@ -78,8 +79,8 @@ public abstract class Product implements Taxable {
         return name;
     }
 
-    public float getPrice() {
-        return price;
+    public float getPriceBeforeTax() {
+        return priceBeforeTax;
     }
 
     public boolean isImported() {
@@ -102,7 +103,15 @@ public abstract class Product implements Taxable {
         this.taxStrategy = taxStrategy;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPriceBeforeTax(float priceBeforeTax) {
+        this.priceBeforeTax = priceBeforeTax;
+    }
+
+    public float getPriceAfterTax() {
+        return priceAfterTax;
+    }
+
+    public void setPriceAfterTax(float priceAfterTax) {
+        this.priceAfterTax = priceAfterTax;
     }
 }

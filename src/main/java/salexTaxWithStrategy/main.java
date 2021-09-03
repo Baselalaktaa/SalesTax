@@ -10,9 +10,9 @@ public class main {
         MusicCd musicCd = new MusicCd("cd", 14.99f, false );
         Book book = new Book("book", 12.49f, false );
 
-        basket1.addToBasket(chocolate);
-        basket1.addToBasket(musicCd);
-        basket1.addToBasket(book);
+        basket1.addToBasket(chocolate , 1);
+        basket1.addToBasket(musicCd , 1);
+        basket1.addToBasket(book , 1);
 
         Receipt receipt1 = Receipt.createReceipt(basket1);
         receipt1.prepareReceipt();
@@ -28,8 +28,8 @@ public class main {
         Food importedChocolate2 = new Food("milka" ,10.00f, true);
         Perfume importedPerfume2 = new Perfume("Gucci", 47.50f, true);
 
-        basket2.addToBasket(importedChocolate2);
-        basket2.addToBasket(importedPerfume2);
+        basket2.addToBasket(importedChocolate2 , 1);
+        basket2.addToBasket(importedPerfume2 , 1);
 
         Receipt receipt = Receipt.createReceipt(basket2);
         receipt.prepareReceipt();
@@ -46,10 +46,10 @@ public class main {
         Perfume perfume = new Perfume("Gucci", 18.99f, false );
         Medicament pills = new Medicament("pills" , 9.75f, false);
 
-        basket3.addToBasket(importedChocolate);
-        basket3.addToBasket(importedPerfume);
-        basket3.addToBasket(perfume);
-        basket3.addToBasket(pills);
+        basket3.addToBasket(importedChocolate , 1);
+        basket3.addToBasket(importedPerfume, 1);
+        basket3.addToBasket(perfume , 1);
+        basket3.addToBasket(pills , 1);
 
         Receipt receipt3 = Receipt.createReceipt(basket3);
         receipt3.prepareReceipt();
