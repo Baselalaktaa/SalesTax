@@ -12,13 +12,12 @@ import java.util.stream.Stream;
 class ProductTest {
     private static ShoppingBasket basketWithQty;
     private static ShoppingBasket basket;
-    private static Receipt receipt;
+
     @BeforeAll
     static void setUp(){
         basket = new ShoppingBasket();
         basketWithQty = new ShoppingBasket();
 
-        receipt= new Receipt(basket);
     }
 
     @ParameterizedTest
