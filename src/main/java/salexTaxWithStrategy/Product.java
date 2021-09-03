@@ -45,7 +45,7 @@ public abstract class Product implements Taxable {
         if (taxStrategy == null){
             determineStrategy();
         }
-        this.setTax(this.roundTax(this.getTaxStrategy().taxProduct(this)));
+        this.setTax(this.roundTax(this.getTaxStrategy().determineTaxStrategy(this)));
         this.setPrice(this.getTax() + this.getPrice());
     }
 

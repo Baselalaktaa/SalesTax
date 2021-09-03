@@ -17,7 +17,7 @@ public class main {
         Receipt receipt1 = new Receipt(basket1);
         receipt1.prepareReceipt();
         System.out.println(receipt1);
-            /*
+        /*
         output 2
          */
         System.out.println();
