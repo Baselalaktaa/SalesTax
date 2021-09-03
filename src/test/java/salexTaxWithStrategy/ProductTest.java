@@ -21,7 +21,7 @@ class ProductTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideGoods")
+    @MethodSource("provideGoodsWithoutQty")
     public void taxProductWithoutQty(Product product , float expectedTaxedPrice){
         basket.addToBasket(product);
         assertEquals(expectedTaxedPrice , product.getPrice());
@@ -30,7 +30,7 @@ class ProductTest {
     @ParameterizedTest
     @MethodSource("provideGoodsWithQty")
     public void taxProductWithQty(Product product , float expectedTaxedPrice){
-        basketWithQty.addToBasket(product);
+        basketWithQty.addToBasketWithQty(product , 2);
         assertEquals(expectedTaxedPrice , product.getPrice());
     }
 
@@ -77,31 +77,31 @@ class ProductTest {
     private static Stream<Arguments> provideGoodsWithQty(){
         return Stream.of(
                 Arguments.of(
-                        new Food("chocolate bar" , 0.85f, false), 0.85*2f
+                        new Food("chocolate bar" , 0.85f, false), 0.85f*2
                 ),
                 Arguments.of(
-                        new Book("lord of the rings", 12.49f , false), 12.49f
+                        new Book("lord of the rings", 12.49f , false), 12.49f*2
                 ),
                 Arguments.of(
-                        new MusicCd("cd", 14.99f, false),16.49*2f
+                        new MusicCd("cd", 14.99f, false),16.49f*2
                 ),
                 Arguments.of(
-                        new Food("imported box of chocolate" , 10.0f, true), 10.5*2f
+                        new Food("imported box of chocolate" , 10.0f, true), 10.5f*2
                 ),
                 Arguments.of(
-                        new Perfume("imported Perfume" , 47.50f, true), 54.65f
+                        new Perfume("imported Perfume" , 47.50f, true), 54.65f*2
                 ),
                 Arguments.of(
-                        new Perfume("imported Perfume" , 27.99f, true), 32.19f
+                        new Perfume("imported Perfume" , 27.99f, true), 32.19f*2
                 ),
                 Arguments.of(
-                        new Perfume("perfume", 18.99f, false ), 20.89*3f
+                        new Perfume("perfume", 18.99f, false ), 20.89f*2
                 ),
                 Arguments.of(
-                        new Medicament("pills", 9.75f, false), 9.75f
+                        new Medicament("pills", 9.75f, false), 9.75f*2
                 ),
                 Arguments.of(
-                        new Food("imported chocolate", 11.25f, true), 11.85*4f
+                        new Food("imported chocolate", 11.25f, true), 11.85f*2
                 )
         );
     }
