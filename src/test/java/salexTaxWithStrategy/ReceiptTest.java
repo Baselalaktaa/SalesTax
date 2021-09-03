@@ -18,7 +18,7 @@ class ReceiptTest {
 
     @BeforeEach
     public void setUp (){
-        shoppingBasket = new ShoppingBasket();
+        shoppingBasket = ShoppingBasket.createShoppingBasket();
         receipt = Receipt.createReceipt(shoppingBasket);
     }
 
@@ -42,7 +42,4 @@ class ReceiptTest {
         assertEquals(expectedTax , receipt.getApplicableTax());
 
     }
-
-
-
 }

@@ -37,12 +37,14 @@ public class Receipt {
 
 
         for (Map.Entry<Product ,Integer> entry : productsWithQty.entrySet()){
-            totalPrice = totalPrice + entry.getKey().getPriceAfterTax();
+
+            totalPrice = totalPrice + entry.getKey().getPriceAfterTax() * entry.getValue();
             applicableTax = applicableTax + entry.getKey().getTax() * entry.getValue();
+
             receipt.append(entry.getKey().getName())
                     .append(" #Qty: ").append(entry.getValue())
-                    .append(" #net price: ").append(entry.getKey().getPriceBeforeTax())
-                    .append(" #taxed price: ").append(entry.getKey().getPriceAfterTax())
+                    .append(" #net price: ").append(entry.getKey().getPriceBeforeTax() * entry.getValue())
+                    .append(" #taxed price: ").append(entry.getKey().getPriceAfterTax() * entry.getValue())
                     .append(NEW_LINE);
         }
         receipt.append("-----------------------------------------------")
@@ -56,13 +58,6 @@ public class Receipt {
         return receipt.toString();
     }
 
-    public ShoppingBasket getShoppingBasket() {
-        return shoppingBasket;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
-    }
 
     public float getApplicableTax() {
         return applicableTax;

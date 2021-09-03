@@ -5,7 +5,7 @@ import salexTaxWithStrategy.products.*;
 public class main {
     public static void main(String[] args) {
         System.out.println("####### OUTPUT 1");
-        ShoppingBasket basket1 = new ShoppingBasket();
+        ShoppingBasket basket1 = ShoppingBasket.createShoppingBasket();
         Food chocolate = new Food("chocolate" ,0.85f, false);
         MusicCd musicCd = new MusicCd("cd", 14.99f, false );
         Book book = new Book("book", 12.49f, false );
@@ -23,7 +23,7 @@ public class main {
         System.out.println();
         System.out.println("####### OUTPUT2");
 
-        ShoppingBasket basket2 = new ShoppingBasket();
+        ShoppingBasket basket2 = ShoppingBasket.createShoppingBasket();
 
         Food importedChocolate2 = new Food("milka" ,10.00f, true);
         Perfume importedPerfume2 = new Perfume("Gucci", 47.50f, true);
@@ -40,7 +40,7 @@ public class main {
          */
         System.out.println();
         System.out.println("####### OUTPUT 3");
-        ShoppingBasket basket3 = new ShoppingBasket();
+        ShoppingBasket basket3 = ShoppingBasket.createShoppingBasket();
         Food importedChocolate = new Food("milka" ,11.25f, true);
         Perfume importedPerfume = new Perfume("Gucci", 27.99f, true);
         Perfume perfume = new Perfume("Gucci", 18.99f, false );

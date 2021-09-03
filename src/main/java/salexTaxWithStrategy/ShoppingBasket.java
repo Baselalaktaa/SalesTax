@@ -9,18 +9,19 @@ public class ShoppingBasket {
 
     private final Map<Product, Integer> productsWithQty;
 
-    public ShoppingBasket (){
+    private ShoppingBasket(){
         //todo try dependency injection
         productsWithQty = new HashMap<>();
     }
 
+    public static ShoppingBasket createShoppingBasket() {
+        return new ShoppingBasket();
+    }
 
 
     public void addToBasket(Product product , int quantity) {
         if (product != null && quantity > 0){
             product.tax();
-            product.setPriceBeforeTax(product.getPriceBeforeTax() * quantity);
-            product.setPriceAfterTax(product.getPriceAfterTax() * quantity);
             productsWithQty.put(product , quantity);
         }
         else throw new IllegalArgumentException();
