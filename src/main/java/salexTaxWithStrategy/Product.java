@@ -41,7 +41,6 @@ public abstract class Product implements Taxable {
 
     @Override
     public void tax (){
-        //todo execute the tax strategy to tax a product
         if (taxStrategy == null){
             determineStrategy();
         }
@@ -55,7 +54,6 @@ public abstract class Product implements Taxable {
      * @return tax rounded up to the nearest 0.05
      */
     public float roundTax (float tax) {
-        //todo round the tax
         return (float) ((float) Math.ceil(tax * 20.0) / 20.0);
     }
 

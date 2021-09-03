@@ -11,16 +11,19 @@ import java.util.List;
  */
 public class Receipt {
 
+    private final static String NEW_LINE = "\n";
     private final ShoppingBasket shoppingBasket;
     private float totalPrice;
     private float applicableTax;
     private StringBuilder result;
 
-    private final static String NEW_LINE = "\n";
 
-
-    public Receipt (ShoppingBasket shoppingBasket){
+    private Receipt(ShoppingBasket shoppingBasket){
         this.shoppingBasket = shoppingBasket;
+    }
+
+    public static Receipt createReceipt(ShoppingBasket shoppingBasket) {
+        return new Receipt(shoppingBasket);
     }
 
     public void prepareReceipt () {

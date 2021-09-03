@@ -5,11 +5,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.*;
+
 import salexTaxWithStrategy.products.*;
 
 import java.util.stream.Stream;
 
-class ProductTest {
+class TaxProductTest {
     private static ShoppingBasket basketWithQty;
     private static ShoppingBasket basket;
 
@@ -25,6 +26,7 @@ class ProductTest {
     public void taxProductWithoutQty(Product product , float expectedTaxedPrice){
         basket.addToBasket(product);
         assertEquals(expectedTaxedPrice , product.getPrice());
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasket(null));
     }
 
     @ParameterizedTest
@@ -32,6 +34,9 @@ class ProductTest {
     public void taxProductWithQty(Product product , float expectedTaxedPrice){
         basketWithQty.addToBasketWithQty(product , 2);
         assertEquals(expectedTaxedPrice , product.getPrice());
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasketWithQty(null , 0));
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasketWithQty(new Perfume("", 0.0f, true) , -1));
+        assertThrows(IllegalArgumentException.class , ()-> basket.addToBasketWithQty(null , 1));
     }
 
     /**

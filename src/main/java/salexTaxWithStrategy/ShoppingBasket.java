@@ -26,7 +26,6 @@ public class ShoppingBasket {
     }
 
     public void addToBasketWithQty (Product product , int quantity) {
-        //todo implement
         if (product != null && quantity > 0){
             product.tax();
             product.setPrice(product.getPrice() * quantity);

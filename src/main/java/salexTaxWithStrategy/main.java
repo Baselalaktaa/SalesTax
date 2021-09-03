@@ -14,7 +14,7 @@ public class main {
         basket1.addToBasket(musicCd);
         basket1.addToBasket(book);
 
-        Receipt receipt1 = new Receipt(basket1);
+        Receipt receipt1 = Receipt.createReceipt(basket1);
         receipt1.prepareReceipt();
         System.out.println(receipt1);
         /*
@@ -31,7 +31,7 @@ public class main {
         basket2.addToBasket(importedChocolate2);
         basket2.addToBasket(importedPerfume2);
 
-        Receipt receipt = new Receipt(basket2);
+        Receipt receipt = Receipt.createReceipt(basket2);
         receipt.prepareReceipt();
         System.out.println(receipt);
 
@@ -51,7 +51,7 @@ public class main {
         basket3.addToBasket(perfume);
         basket3.addToBasket(pills);
 
-        Receipt receipt3 = new Receipt(basket3);
+        Receipt receipt3 = Receipt.createReceipt(basket3);
         receipt3.prepareReceipt();
 
         System.out.println(receipt3);
