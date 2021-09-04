@@ -62,4 +62,12 @@ public class Receipt {
     public float getApplicableTax() {
         return applicableTax;
     }
+
+    public ShoppingBasket getShoppingBasket() {
+        return shoppingBasket;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
+    }
 }

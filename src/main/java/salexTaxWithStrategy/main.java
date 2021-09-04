@@ -1,5 +1,6 @@
 package salexTaxWithStrategy;
 
+import salexTaxWithStrategy.helpers.DataExporter;
 import salexTaxWithStrategy.products.*;
 
 public class main {
@@ -53,6 +54,10 @@ public class main {
 
         Receipt receipt3 = Receipt.createReceipt(basket3);
         receipt3.prepareReceipt();
+
+        DataExporter dataExporter = DataExporter.createDataExporter(receipt3);
+
+        dataExporter.exportToPdf();
 
         System.out.println(receipt3);
     }
