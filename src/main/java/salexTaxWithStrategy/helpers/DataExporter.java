@@ -17,6 +17,12 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * class to Export receipt to pdf invoice
+ * @author Basel Alaktaa
+ * @since 04.09.2021 02:00
+ * @version 1.0
+ */
 
 public class DataExporter {
 
