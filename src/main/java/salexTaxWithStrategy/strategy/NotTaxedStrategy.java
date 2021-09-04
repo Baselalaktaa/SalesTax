@@ -10,7 +10,7 @@ import salexTaxWithStrategy.Product;
 
 public class NotTaxedStrategy implements TaxStrategy {
     @Override
-    public float calculateTax(Product product) {
+    public float determineTaxStrategy(Product product) {
         return 0.00f;
     }
 }

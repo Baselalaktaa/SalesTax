@@ -9,7 +9,7 @@ import salexTaxWithStrategy.Product;
  */
 public class FullyTaxedAndImportedStrategy implements TaxStrategy {
     @Override
-    public float calculateTax(Product product) {
+    public float determineTaxStrategy(Product product) {
         return product.getPriceBeforeTax() * .15f;
     }
 }

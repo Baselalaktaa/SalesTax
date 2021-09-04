@@ -3,7 +3,7 @@ package salexTaxWithStrategy;
 import salexTaxWithStrategy.helpers.DataExporter;
 import salexTaxWithStrategy.products.*;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         System.out.println("####### OUTPUT 1");
         ShoppingBasket basket1 = ShoppingBasket.createShoppingBasket();

@@ -9,5 +9,5 @@ import salexTaxWithStrategy.Product;
  * @version 1.0
  */
 public interface TaxStrategy {
-    float calculateTax(Product product);
+    float determineTaxStrategy(Product product);
 }
